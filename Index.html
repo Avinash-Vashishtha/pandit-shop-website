@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pandit Shop | Online Order</title>
+
+  <style>
+    body{
+      margin:0;
+      font-family: Arial, sans-serif;
+      background:#f5f7fa;
+      color:#333;
+    }
+    header{
+      background:#0ea5a0;
+      color:#fff;
+      padding:20px;
+      text-align:center;
+    }
+    header h1{margin:0;font-size:28px;}
+    header p{margin:5px 0 0;font-size:14px;}
+
+    .container{
+      padding:15px;
+      max-width:700px;
+      margin:auto;
+    }
+
+    .section{
+      background:#fff;
+      border-radius:8px;
+      padding:15px;
+      margin-bottom:15px;
+      box-shadow:0 2px 5px rgba(0,0,0,0.1);
+    }
+
+    h2{
+      color:#0ea5a0;
+      margin-top:0;
+    }
+
+    label{
+      font-weight:bold;
+      display:block;
+      margin-top:10px;
+    }
+
+    input, select, textarea{
+      width:100%;
+      padding:10px;
+      margin-top:5px;
+      border:1px solid #ccc;
+      border-radius:6px;
+      font-size:14px;
+    }
+
+    button{
+      width:100%;
+      background:#25D366;
+      color:#fff;
+      border:none;
+      padding:15px;
+      font-size:18px;
+      border-radius:8px;
+      margin-top:15px;
+      cursor:pointer;
+      font-weight:bold;
+    }
+
+    button:hover{
+      background:#1ebe5d;
+    }
+
+    footer{
+      background:#111827;
+      color:#fff;
+      text-align:center;
+      padding:15px;
+      font-size:13px;
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <h1>Pandit Shop</h1>
+  <p>Biryani • Chai • General Store • Stationery</p>
+</header>
+
+<div class="container">
+
+  <div class="section">
+    <h2>📝 Order Form</h2>
+
+    <label>Customer Name</label>
+    <input type="text" id="name" placeholder="Apna naam likhiye">
+
+    <label>Mobile Number</label>
+    <input type="tel" id="mobile" placeholder="Mobile number">
+
+    <label>Select Item</label>
+    <select id="item">
+      <option>Biryani</option>
+      <option>Chai</option>
+      <option>Cold Drink</option>
+      <option>Water Bottle</option>
+      <option>Namkeen</option>
+      <option>Biscuits</option>
+      <option>Chips</option>
+      <option>Kurkure</option>
+      <option>Stationery Item</option>
+    </select>
+
+    <label>Quantity</label>
+    <input type="number" id="qty" value="1" min="1">
+
+    <label>Extra Message</label>
+    <textarea id="msg" placeholder="Koi special request..."></textarea>
+
+    <button onclick="sendOrder()">📲 Order on WhatsApp</button>
+  </div>
+
+  <div class="section">
+    <h2>📍 Address</h2>
+    <p>Nai Tehsil, Atrauli<br>SDM Office ke paas</p>
+  </div>
+
+</div>
+
+<footer>
+  © 2025 Pandit Shop | All Rights Reserved
+</footer>
+
+<script>
+function sendOrder(){
+  var name = document.getElementById("name").value.trim();
+  var mobile = document.getElementById("mobile").value.trim();
+  var item = document.getElementById("item").value;
+  var qty = document.getElementById("qty").value;
+  var msg = document.getElementById("msg").value;
+
+  if(name === "" || mobile === ""){
+    alert("Naam aur mobile number zaroor bharein");
+    return;
+  }
+
+  var text =
+    "New Order - Pandit Shop\n\n" +
+    "Name: " + name + "\n" +
+    "Mobile: " + mobile + "\n" +
+    "Item: " + item + "\n" +
+    "Quantity: " + qty + "\n" +
+    "Message: " + msg;
+
+  // Works for BOTH WhatsApp & WhatsApp Business
+  var url = "https://api.whatsapp.com/send?phone=919627488812&text=" 
+            + encodeURIComponent(text);
+
+  window.open(url, "_blank");
+}
+</script>
+
+</body>
+</html>
+   
